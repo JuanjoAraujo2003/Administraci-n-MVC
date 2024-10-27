@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Project, Task
-from .forms import ProjectForm, TaskForm
+from .models import Project, Task, Empleado
+from .forms import ProjectForm, TaskForm, EmpleadoForm
+
 
 def dashboard(request):
     projects = Project.objects.all()
@@ -26,3 +27,14 @@ def create_task(request):
     else:
         form = TaskForm()
     return render(request, 'core/task_form.html', {'form': form})
+
+def agregar_empleado(request):
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')  
+    else:
+        form = EmpleadoForm()
+    return render(request, 'core/agregar_empleado.html', {'form': form})
+
