@@ -4,9 +4,12 @@ from .forms import ProjectForm, TaskForm, EmpleadoForm
 
 
 def dashboard(request):
-    projects = Project.objects.all()
-    tasks = Task.objects.all()
-    return render(request, 'core/dashboard.html', {'projects': projects, 'tasks': tasks})
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        projects = Project.objects.all()
+        tasks = Task.objects.all()
+        return render(request, 'core/dashboard.html', {'projects': projects, 'tasks': tasks})
 
 def create_project(request):
     if request.method == 'POST':

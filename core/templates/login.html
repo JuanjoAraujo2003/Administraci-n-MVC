@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        .form{
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+
+</head>
+<body>
+
+    <main class="container medium">
+        <div class="form">
+            <h2 style="text-align:center";>Task Management</h2>
+
+        {% if form.non_field_errors %}
+            <div class="error">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            <div>
+                <label for="id_username">Username</label>
+                {{ form.username }}
+            </div>
+
+            <div>
+                <label for="id_password">Password</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit">Login</button>
+            
+        </form>
+        </div>
+        
+        
+    </main>
+
+</body>
+</html>
