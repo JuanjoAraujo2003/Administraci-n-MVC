@@ -24,3 +24,8 @@
 <nav>
     <a href="{% url 'agregar_empleado' %}">Crear Empleado</a>
 </nav>
+
+<form  method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button>Log Out</button>
+</form>

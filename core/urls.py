@@ -10,4 +10,5 @@ urlpatterns = [
     path('task/create/', login_required(create_task), name='create_task'),
     path('core/agregar_empleado/',login_required(agregar_empleado), name='agregar_empleado'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
 ]

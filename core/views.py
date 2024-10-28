@@ -29,7 +29,9 @@ def create_task(request):
             return redirect('dashboard')
     else:
         form = TaskForm()
-    return render(request, 'core/task_form.html', {'form': form})
+    
+    empleados = Empleado.objects.all()
+    return render(request, 'core/task_form.html', {'form': form, 'empleados': empleados})
 
 def agregar_empleado(request):
     if request.method == 'POST':
